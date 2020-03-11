@@ -1,0 +1,2 @@
+# FinanceApp
+Manage your budgets
