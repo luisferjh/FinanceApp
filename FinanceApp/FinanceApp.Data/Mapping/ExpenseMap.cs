@@ -19,12 +19,17 @@ namespace FinanceApp.Data.Mapping
             builder.Property(p => p.DescriptionExpense).HasColumnType("varchar(70)").IsRequired();
 
             builder.Property(p => p.AmountSpent).HasColumnType("decimal(11,2)").IsRequired();
-            builder.Property(p => p.DateExpense).HasColumnType("datetime").IsRequired();
-            builder.Property(p => p.IdStatus).HasColumnType("int").IsRequired();
+            builder.Property(p => p.DateExpense).HasColumnType("datetime").IsRequired();           
+            builder.Property(p => p.IdStatus).HasColumnType("int").HasColumnName("Id_Status").IsRequired();
 
             //relations
             builder.ToTable("Expense")
                    .HasKey(p => p.IdExpense);
+
+            builder.HasOne(w => w.CategoryExpense)
+                .WithMany(w => w.Expenses)
+                .HasForeignKey(w => w.IdCategoryExpense)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
             
     }

@@ -10,6 +10,8 @@ namespace FinanceApp.Data
     public class DbContextFinance: DbContext
     {
         public DbSet<Expense> Expenses { get; set; }
+        public DbSet<CategoryExpense> CategoryExpenses { get; set; }
+
         public DbContextFinance(DbContextOptions<DbContextFinance> options) : base(options)
         {
 
@@ -19,6 +21,7 @@ namespace FinanceApp.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new ExpenseMap());
+            modelBuilder.ApplyConfiguration(new CategoryExpenseMap());
         }
     }
 }

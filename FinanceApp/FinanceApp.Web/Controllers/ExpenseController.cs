@@ -6,6 +6,7 @@ using FinanceApp.Web.Models.Expenses;
 using FinanceApp.Web.Services.Expenses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FinanceApp.Web.Controllers
 {
@@ -25,6 +26,28 @@ namespace FinanceApp.Web.Controllers
         public async Task<IEnumerable<ExpenseViewModel>> List()
         {
             return await _expenseService.ListAsync();
+        }
+
+        // POST: api/Expense
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        [HttpPost("[action]")]
+        public async Task<ActionResult> Add([FromBody] AddExpenseViewModel expenses)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                await _expenseService.AddAsync(expenses);
+            }
+            catch (DbUpdateException ex)
+            {
+                return BadRequest(ex.Message);               
+            }
+
+            return Ok();
         }
 
         //// GET: api/Expense/5
@@ -73,17 +96,6 @@ namespace FinanceApp.Web.Controllers
         //    return NoContent();
         //}
 
-        //// POST: api/Expense
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        //// more details see https://aka.ms/RazorPagesCRUD.
-        //[HttpPost]
-        //public async Task<ActionResult<Expense>> PostExpenses(Expense expenses)
-        //{
-        //    _context.Expenses.Add(expenses);
-        //    await _context.SaveChangesAsync();
-
-        //    return CreatedAtAction("GetExpenses", new { id = expenses.IdExpense }, expenses);
-        //}
 
         //// DELETE: api/Expense/5
         //[HttpDelete("{id}")]

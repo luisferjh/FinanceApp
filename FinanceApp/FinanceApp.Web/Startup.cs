@@ -1,4 +1,6 @@
+using AutoMapper;
 using FinanceApp.Data;
+using FinanceApp.Web.MappingDTOs;
 using FinanceApp.Web.Services.Expenses;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +30,17 @@ namespace FinanceApp.Web
 
             services.AddDbContext<DbContextFinance>(options =>
              options.UseSqlServer(Configuration["FinanceDB:ConnectionString"]));
+
+
+            // Automapper
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new ExpenseProfile());
+            });
+
+            IMapper mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
+
 
             services.AddTransient<IExpenseService, ExpenseService>();
 

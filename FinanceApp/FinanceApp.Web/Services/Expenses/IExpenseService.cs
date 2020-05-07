@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.Web.Services.Expenses
 {
-    public interface IExpenseService: IReadRepository<ExpenseViewModel, int>
+    public interface IExpenseService: IReadRepository<ExpenseViewModel, int>, ICreateRepository<AddExpenseViewModel>
     {
 
     }
