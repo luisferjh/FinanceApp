@@ -9,8 +9,11 @@ namespace FinanceApp.Data
 {
     public class DbContextFinance: DbContext
     {
-        public DbSet<Expense> Expenses { get; set; }
-        public DbSet<CategoryExpense> CategoryExpenses { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Entities.Operation> Operations { get; set; }
+        public DbSet<DetOperation> DetOperations { get; set; }
+        public DbSet<TypeOperation> typeOperations { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DbContextFinance(DbContextOptions<DbContextFinance> options) : base(options)
         {
@@ -20,8 +23,11 @@ namespace FinanceApp.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new ExpenseMap());
-            modelBuilder.ApplyConfiguration(new CategoryExpenseMap());
+            modelBuilder.ApplyConfiguration(new OperationMap());
+            modelBuilder.ApplyConfiguration(new CategoryMap());
+            modelBuilder.ApplyConfiguration(new TypeOperationMap());
+            modelBuilder.ApplyConfiguration(new DetailOperationMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
         }
     }
 }

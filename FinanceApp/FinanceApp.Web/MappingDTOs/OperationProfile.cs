@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.Web.MappingDTOs
 {
-    public class ExpenseProfile:Profile
+    public class OperationProfile:Profile
     {
-        public ExpenseProfile()
+        public OperationProfile()
         {
-            CreateMap<AddExpenseViewModel,Expense>();           
+            CreateMap<AddOperationVwModel,Operation>();           
         }
+     
     }
 }

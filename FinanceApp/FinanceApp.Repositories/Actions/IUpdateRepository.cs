@@ -7,6 +7,6 @@ namespace FinanceApp.Repository.Interfaces.Actions
 {
     public interface IUpdateRepository<T> where T: class
     {
-        Task UpdateAsync(T model);
+        Task<int> UpdateAsync(T model);       
     }
 }

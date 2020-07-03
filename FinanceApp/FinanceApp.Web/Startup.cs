@@ -1,6 +1,7 @@
 using AutoMapper;
 using FinanceApp.Data;
 using FinanceApp.Web.MappingDTOs;
+using FinanceApp.Web.Services.CategoryExpenses;
 using FinanceApp.Web.Services.Expenses;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,14 +36,14 @@ namespace FinanceApp.Web
             // Automapper
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile(new ExpenseProfile());
+                cfg.AddProfile(new OperationProfile());
             });
 
             IMapper mapper = config.CreateMapper();
             services.AddSingleton(mapper);
 
-
-            services.AddTransient<IExpenseService, ExpenseService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IOperationService, OperationService>();
 
 
             // In production, the React files will be served from this directory

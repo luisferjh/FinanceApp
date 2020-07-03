@@ -7,6 +7,6 @@ namespace FinanceApp.Repository.Interfaces.Actions
 {
     public interface ICreateRepository<T> where T: class
     {
-        Task AddAsync(T model);
+        Task<int> AddAsync(T model);
     }
 }

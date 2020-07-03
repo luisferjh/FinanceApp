@@ -12,18 +12,18 @@ namespace FinanceApp.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExpenseController : ControllerBase
+    public class OperationController : ControllerBase
     {
-        private readonly IExpenseService _expenseService;
+        private readonly IOperationService _expenseService;
 
-        public ExpenseController(IExpenseService expenseService)
+        public OperationController(IOperationService expenseService)
         {
             _expenseService = expenseService;
         }
 
         // GET: api/Expense
         [HttpGet("[action]")]
-        public async Task<IEnumerable<ExpenseViewModel>> List()
+        public async Task<IEnumerable<OperationViewModel>> List()
         {
             return await _expenseService.ListAsync();
         }
@@ -31,7 +31,7 @@ namespace FinanceApp.Web.Controllers
         // POST: api/Expense
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         [HttpPost("[action]")]
-        public async Task<ActionResult> Add([FromBody] AddExpenseViewModel expenses)
+        public async Task<ActionResult> Add([FromBody] AddOperationVwModel expenses)
         {
             if (!ModelState.IsValid)
             {

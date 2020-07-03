@@ -12,5 +12,8 @@ namespace FinanceApp.Entities
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public int IdStatus { get; set; }
+
+        // Navigation Properties
+        public ICollection<DetOperation> DetOperations { get; set; }
     }
 }
